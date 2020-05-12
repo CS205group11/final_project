@@ -4,7 +4,7 @@ Scene classification is one of the fundamental problem in the area of computer v
 
 Convolutional Neural Networks (CNN) are widely used in image analysis. CNN is usually quite computationally demanding to train, even more intensive if the training dataset is larger and hyper-parameter tuning is required.  In this project, we aim to explore parallel CNN training for huge image dataset, find feasible solution and compare runtime and performance in different settings. More specifically, we will use a huge image dataset and train CNN for label classification with Spark and using parallelization framework available on AWS. 
 
-For detailed report, please visit the website [here](https://sites.google.com/view/cs205finalproject-parallelcnn/home)
+For detailed report, please visit the website [here](https://sites.google.com/view/cs205finalproject-parallelcnn)
 
 ## Environment Builing and Infrastructure Setup
 
