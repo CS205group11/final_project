@@ -50,7 +50,7 @@ You need to use conda and pip to set up a new envrionment for this application
 - Logout your ec2 instance and go to the AWS console. Select your instance, and create an AMI by selecting Action > Image > Create Image
 
 #### Creating EMR Cluster with you AMI
-- IN EMR Dashboard select `Create Cluster` and go to advanced options
+- In EMR Dashboard select `Create Cluster` and go to advanced options
 
 - For Release select EMR-5.29.0 with Hadoop 2.8.5, Spark 2.4.4,Zeppelin 0.8.2 and Ganglia 3.7.2
 
@@ -71,7 +71,7 @@ export PATH=/usr/lib/spark:$PATH
 export PYSPARK_PYTHON=/usr/bin/python3
 export TF_XLA_FLAGS=--tf_xla_cpu_global_jit
 ```
-- Save and Exit it and Reload it with `source activae ~/.bashrc`
+- Save and Exit, Reload it with `source activae ~/.bashrc`
 
 - Install git by `sudo yum install git`
 
@@ -82,7 +82,7 @@ export TF_XLA_FLAGS=--tf_xla_cpu_global_jit
 
 - You can set the number of workers and number of cores on each worker by adjusting `--num-executors n --executor-cores m`, but you also need to resize the cluster as needed
 
-- **Important:** If you encounter memory issue. Please try to add `--driver-memory 8G --executor-memory 8G --conf spark.driver.maxResultSize=8G` to `spark-submit`. If you still can not get enough memory, the only way we find is to use a subset of data for training. For detail please refer our websites.
+- **Important:** If you encounter memory issue. Please try to add `--driver-memory 8G --executor-memory 8G --conf spark.driver.maxResultSize=8G` to `spark-submit`. If you still cannot get enough memory, the only way we find is to use a subset of data for training. For detail please refer to our website.
 
 
 
