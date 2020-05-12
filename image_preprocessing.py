@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import time
+import uuid
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -25,6 +26,7 @@ from tensorflow.keras.preprocessing.image import img_to_array, load_img
 from pyspark import SparkConf, SparkContext
 from pyspark.sql.session import SparkSession
 import glob
+import imageio
 
 with open("SUN397/ClassName.txt", "r") as f:
     paths = f.read().split('\n')
@@ -61,6 +63,11 @@ with open("img_paths.txt","w") as f:
 conf = SparkConf().setMaster('local').setAppName('P22')
 sc = SparkContext(conf = conf)
 spark = SparkSession(sc)
-RDD=sc.textFile('img_paths_sub.txt')
-result=RDD.map(lambda line:load_transform_data(line) )
-result.saveAsTextFile("tmpoutput.txt")
+
+RDD=sc.textFile('img_paths.txt') # Read in image paths
+result=RDD.map(lambda line:load_transform_data(line) ) # Load the image and transform them to array of size (224, 224, 3)
+result.saveAsTextFile("tmpoutput.txt") # Save the (image_array, label) tuples
+result = result.zipWithIndex()
+
+#  In this step, we store the image array back to images of size (224,224,3)
+result.map(lambda row: imageio.imwrite(f'{row[0][1]}_{row[1]}.jpg', row[0][0])).collect()
